@@ -34,7 +34,7 @@ namespace CapaNegocio
                     _objContext.LibroMayor.Remove(registro);
                 }
                 this._objContext.SaveChanges();*/
-                String cadena = ConfigurationManager.ConnectionStrings["ConexionRepositorio"].ConnectionString;
+                
 
                 using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionRepositorio"].ConnectionString))
                 {
