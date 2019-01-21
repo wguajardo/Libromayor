@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RepositorioDatosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LibroMayor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empresa" Type="varchar" MaxLength="100" />
+          <Property Name="CodigoCliente" Type="varchar" MaxLength="100" />
+          <Property Name="NombreCliente" Type="varchar" MaxLength="100" />
+          <Property Name="FechaContabilizacion" Type="varchar" MaxLength="100" />
+          <Property Name="FechaVencimiento" Type="varchar" MaxLength="100" />
+          <Property Name="FechaDocumento" Type="varchar" MaxLength="100" />
+          <Property Name="Serie" Type="varchar" MaxLength="100" />
+          <Property Name="NumDocto" Type="varchar" MaxLength="100" />
+          <Property Name="NumFolio" Type="varchar" MaxLength="100" />
+          <Property Name="NumTransac" Type="varchar" MaxLength="100" />
+          <Property Name="Comentarios" Type="varchar" MaxLength="1000" />
+          <Property Name="Proyecto" Type="varchar" MaxLength="100" />
+          <Property Name="CuentaContrap" Type="varchar" MaxLength="100" />
+          <Property Name="NombreCuenta" Type="varchar" MaxLength="100" />
+          <Property Name="Indicador" Type="varchar" MaxLength="100" />
+          <Property Name="CargoAbono" Type="varchar" MaxLength="100" />
+          <Property Name="Cargo" Type="varchar" MaxLength="100" />
+          <Property Name="Abono" Type="varchar" MaxLength="100" />
+          <Property Name="SaldoAcum" Type="varchar" MaxLength="100" />
+          <Property Name="SaldoVencido" Type="varchar" MaxLength="100" />
+          <Property Name="Debito" Type="varchar" MaxLength="100" />
+          <Property Name="Credito" Type="varchar" MaxLength="100" />
+          <Property Name="CentroCosto" Type="varchar" MaxLength="100" />
+          <Property Name="Temporada" Type="varchar" MaxLength="100" />
+          <Property Name="Campo" Type="varchar" MaxLength="100" />
+          <Property Name="Especievariedad" Type="varchar" MaxLength="100" />
+          <Property Name="AcuerdoGlobal" Type="varchar" MaxLength="100" />
+          <Property Name="NumSec" Type="varchar" MaxLength="100" />
+          <Property Name="TemporadaCabecera" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="RepositorioDatosModelStoreContainer">
+          <EntitySet Name="LibroMayor" EntityType="Self.LibroMayor" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RepositorioDatosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RepositorioDatosEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="LibroMayor" EntityType="RepositorioDatosModel.LibroMayor" />
+        </EntityContainer>
+        <EntityType Name="LibroMayor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empresa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaContabilizacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaVencimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaDocumento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Serie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumDocto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumFolio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumTransac" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Comentarios" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Proyecto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CuentaContrap" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreCuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Indicador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CargoAbono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cargo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Abono" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SaldoAcum" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SaldoVencido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Debito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Credito" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CentroCosto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Temporada" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Campo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Especievariedad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AcuerdoGlobal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NumSec" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TemporadaCabecera" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RepositorioDatosModelStoreContainer" CdmEntityContainer="RepositorioDatosEntities" >
+          <EntitySetMapping Name="LibroMayor">
+            <EntityTypeMapping TypeName="RepositorioDatosModel.LibroMayor">
+              <MappingFragment StoreEntitySet="LibroMayor">
+                <ScalarProperty Name="TemporadaCabecera" ColumnName="TemporadaCabecera" />
+                <ScalarProperty Name="NumSec" ColumnName="NumSec" />
+                <ScalarProperty Name="AcuerdoGlobal" ColumnName="AcuerdoGlobal" />
+                <ScalarProperty Name="Especievariedad" ColumnName="Especievariedad" />
+                <ScalarProperty Name="Campo" ColumnName="Campo" />
+                <ScalarProperty Name="Temporada" ColumnName="Temporada" />
+                <ScalarProperty Name="CentroCosto" ColumnName="CentroCosto" />
+                <ScalarProperty Name="Credito" ColumnName="Credito" />
+                <ScalarProperty Name="Debito" ColumnName="Debito" />
+                <ScalarProperty Name="SaldoVencido" ColumnName="SaldoVencido" />
+                <ScalarProperty Name="SaldoAcum" ColumnName="SaldoAcum" />
+                <ScalarProperty Name="Abono" ColumnName="Abono" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="CargoAbono" ColumnName="CargoAbono" />
+                <ScalarProperty Name="Indicador" ColumnName="Indicador" />
+                <ScalarProperty Name="NombreCuenta" ColumnName="NombreCuenta" />
+                <ScalarProperty Name="CuentaContrap" ColumnName="CuentaContrap" />
+                <ScalarProperty Name="Proyecto" ColumnName="Proyecto" />
+                <ScalarProperty Name="Comentarios" ColumnName="Comentarios" />
+                <ScalarProperty Name="NumTransac" ColumnName="NumTransac" />
+                <ScalarProperty Name="NumFolio" ColumnName="NumFolio" />
+                <ScalarProperty Name="NumDocto" ColumnName="NumDocto" />
+                <ScalarProperty Name="Serie" ColumnName="Serie" />
+                <ScalarProperty Name="FechaDocumento" ColumnName="FechaDocumento" />
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FechaContabilizacion" ColumnName="FechaContabilizacion" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="CodigoCliente" ColumnName="CodigoCliente" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
