@@ -36,6 +36,8 @@ namespace ReadLibroMayor
         public string AcuerdoGlobal { get; set; }
         public string NumeroSec { get; set; }
         public string TemporadaCabecera { get; set; }
+        public string Empresa { get; set; }
+        public string TipoCuenta { get; set; }
 
 
 
