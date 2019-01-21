@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReadLibroMayor
+namespace CapaNegocio
 {
-    class LibroMayorViewModel
+   public class LibroMayorViewModel
     {
         public string CodigoCliente { get; set; }
         public string NombreCliente { get; set; }
@@ -38,9 +38,5 @@ namespace ReadLibroMayor
         public string TemporadaCabecera { get; set; }
         public string Empresa { get; set; }
         public string TipoCuenta { get; set; }
-
-
-
-
     }
 }

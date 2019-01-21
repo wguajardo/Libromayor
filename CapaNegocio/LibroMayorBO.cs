@@ -15,6 +15,7 @@ namespace CapaNegocio
     {
         // private RepositorioDatosEntities _objContext;
         private const String LM_PROC_D_DATOS = "LM_PROC_D_DATOS";
+        private const String LM_PROC_I_DATOS_LIBRO_MAYOR = "LM_PROC_I_DATOS_LIBRO_MAYOR";
 
         public LibroMayorBO()
         {
@@ -26,15 +27,7 @@ namespace CapaNegocio
         {
             Respuesta respuesta = new Respuesta();
            try
-            {
-                /*var borrar = this._objContext.LibroMayor.Where(l => l.Empresa.ToUpper() == empresa);
-
-                foreach (var registro in borrar)
-                {
-                    _objContext.LibroMayor.Remove(registro);
-                }
-                this._objContext.SaveChanges();*/
-                
+            {               
 
                 using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionRepositorio"].ConnectionString))
                 {
@@ -62,6 +55,82 @@ namespace CapaNegocio
             {
                 Console.WriteLine(ex.Message);
                 respuesta.Mensaje = ex.Message;
+            }
+
+            return respuesta;
+        }
+
+        public List<Respuesta> InsertaDatos(LibroMayorViewModel item)
+        {
+            List<Respuesta> respuesta = new List<Respuesta>();
+            try
+            {
+
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionRepositorio"].ConnectionString))
+                {
+                    cnn.Open();
+                    //Resto del codigo
+
+                    SqlCommand cmd = new SqlCommand(LM_PROC_I_DATOS_LIBRO_MAYOR, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //cmd.Parameters.AddWithValue("@empresa", empresa);
+                   
+                            cmd.Parameters.AddWithValue("@Empresa",item.Empresa);
+                            cmd.Parameters.AddWithValue("@CodigoCliente", item.CodigoCliente);
+                            cmd.Parameters.AddWithValue("@NombreCliente", item.NombreCliente);
+                            cmd.Parameters.AddWithValue("@FechaContabilizacion", item.FechaContabilizacion);
+                            cmd.Parameters.AddWithValue("@FechaVencimiento", item.FechaVencimiento);
+                            cmd.Parameters.AddWithValue("@FechaDocumento", item.FechaDocumento);
+                            cmd.Parameters.AddWithValue("@Serie", item.Serie);
+                            cmd.Parameters.AddWithValue("@NumDocto", item.NumeroDocumento);
+                            cmd.Parameters.AddWithValue("@NumFolio", (String.IsNullOrEmpty(item.Folio) ? "" : item.Folio));
+                            cmd.Parameters.AddWithValue("@NumTransac", item.NumeroTransaccion);
+                            cmd.Parameters.AddWithValue("@Comentarios", item.Comentarios);
+                            cmd.Parameters.AddWithValue("@Proyecto", (String.IsNullOrEmpty(item.Proyecto) ? "" : item.Proyecto));
+                            cmd.Parameters.AddWithValue("@CuentaContrap", item.CuentaContrapartida);
+                            cmd.Parameters.AddWithValue("@NombreCuenta", item.NombreCuentaContr);
+                            cmd.Parameters.AddWithValue("@Indicador", item.Indicador);
+                            cmd.Parameters.AddWithValue("@CargoAbono", item.CargoAbono);
+                            cmd.Parameters.AddWithValue("@Cargo", item.Cargo);
+                            cmd.Parameters.AddWithValue("@Abono", item.Abono);
+                            cmd.Parameters.AddWithValue("@SaldoAcum", item.SaldoAcumulado);
+                            cmd.Parameters.AddWithValue("@SaldoVencido", item.SaldoVencido);
+                            cmd.Parameters.AddWithValue("@Debito", item.Debito);
+                            cmd.Parameters.AddWithValue("@Credito", item.Credito);
+                            cmd.Parameters.AddWithValue("@CentroCosto", item.CentroCosto);
+                            cmd.Parameters.AddWithValue("@Temporada", item.Temporada);
+                            cmd.Parameters.AddWithValue("@Campo", item.Campo);
+                            cmd.Parameters.AddWithValue("@Especievariedad", item.EspecieVariedad);
+                            cmd.Parameters.AddWithValue("@AcuerdoGlobal", item.AcuerdoGlobal);
+                            cmd.Parameters.AddWithValue("@NumSec", item.NumeroSec);
+                            cmd.Parameters.AddWithValue("@TemporadaCabecera", item.TemporadaCabecera);
+                            cmd.Parameters.AddWithValue("@TipoCuenta", item.TipoCuenta);
+
+                            Respuesta dto = new Respuesta();
+                            SqlDataReader reader = cmd.ExecuteReader();
+                            if (reader.Read())
+                            {
+                                dto.Codigo = reader["ERROR"].ToString();
+                                dto.Mensaje = reader["MENSAJE"].ToString();
+                            }
+                            respuesta.Add(dto);
+                            reader.Close();
+                  
+
+                   
+
+                    
+                    cnn.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Respuesta dto = new Respuesta();
+                Console.WriteLine(ex.Message);
+                dto.Mensaje = ex.Message;
+                respuesta.Add(dto);
             }
 
             return respuesta;

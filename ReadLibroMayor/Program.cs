@@ -14,15 +14,26 @@ namespace ReadLibroMayor
     {
         static void Main(string[] args)
         {
-            //List<LibroMayorViewModel> listado = LeerArchivo();
+            //LibroMayorViewModel listado = LeerArchivo();
+            DateTime startTime = DateTime.Now;
+            Console.WriteLine("Inicio: " + startTime);
             EliminaDatos("RUTA");
+            LeerArchivo();
+            //List<Respuesta> insertaDatos = InsertaDatos(listado);
+
+            DateTime endTime = DateTime.Now;
+
+            TimeSpan span = endTime.Subtract(startTime);
+            Console.WriteLine("Tiempo Ejecución: " + span.Hours + ":" + span.Minutes + ":" + span.Seconds);
+            Console.WriteLine("Fin: " + endTime);
         }
 
-        private static List<LibroMayorViewModel> LeerArchivo()
+        private static void LeerArchivo()
         {
             List<LibroMayorViewModel> listado = new List<LibroMayorViewModel>();
             try
             {
+                Console.WriteLine("----- Inicio de Lectura de Archivo -----");
                 Excel.Application xlApp = new Excel.Application();
 
                 Excel.Workbook xlWorkbook = xlApp.Workbooks.Open(@"C:\ArchivosTest\LIBRO_MAYOR_EXTERIOR_FESA.xlsx");
@@ -32,7 +43,7 @@ namespace ReadLibroMayor
                 int rowCount = xlRange.Rows.Count;
                 int colCount = xlRange.Columns.Count;
 
-                Console.WriteLine("Rows: " + rowCount.ToString());
+                Console.WriteLine("Total Filas: " + rowCount.ToString());
                 //Console.Read();
                 
                 string codigoCliente = "";
@@ -63,6 +74,7 @@ namespace ReadLibroMayor
                         if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null && primeraFila == 1 && j == 2)
                         {
                             codigoCliente = xlRange.Cells[i, j].Value2.ToString();
+                            
                         }
                         if (xlRange.Cells[i, j] != null && xlRange.Cells[i, j].Value2 != null && primeraFila == 1 && j == 8)
                         {
@@ -211,8 +223,10 @@ namespace ReadLibroMayor
                         {
                             modelo.CodigoCliente = codigoCliente;
                             modelo.NombreCliente = nombreCliente;
-
-                            listado.Add(modelo);
+                            modelo.Empresa = "RUTA";
+                            modelo.TipoCuenta = "EXTRANJERO";
+                            InsertaDatos(modelo);
+                            //listado.Add(modelo);
                         }
 
                         if (primeraFila == 1 && j == 26)
@@ -227,32 +241,32 @@ namespace ReadLibroMayor
 
                 //quit and release
                 xlApp.Quit();
+               
 
-                
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return listado;
+           // return listado;
         }
 
-        private static bool InsertaDatos(List<LibroMayorViewModel> listado)
+        private static List<Respuesta> InsertaDatos(LibroMayorViewModel listado)
         {
-            bool respuesta = false;
+            Console.WriteLine("----- Insertando Datos -----");
             LibroMayorBO capaNegocio = new LibroMayorBO();
+            List<Respuesta> respuesta = capaNegocio.InsertaDatos(listado);
+
             return respuesta;
 
         }
 
         private static void EliminaDatos(String Empresa)
         {
-            //bool respuesta = false;
+            Console.WriteLine("----- Elimando Datos -----");
             LibroMayorBO capaNegocio = new LibroMayorBO();
-
             capaNegocio.EliminarDatos(Empresa);
-            //return respuesta;
-
         }
 
 
