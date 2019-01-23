@@ -38,5 +38,6 @@ namespace CapaNegocio
         public string TemporadaCabecera { get; set; }
         public string Empresa { get; set; }
         public string TipoCuenta { get; set; }
+        public string Archivo { get; set; }
     }
 }

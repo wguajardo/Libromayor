@@ -16,6 +16,7 @@ namespace CapaNegocio
         // private RepositorioDatosEntities _objContext;
         private const String LM_PROC_D_DATOS = "LM_PROC_D_DATOS";
         private const String LM_PROC_I_DATOS_LIBRO_MAYOR = "LM_PROC_I_DATOS_LIBRO_MAYOR";
+        private const String LM_PROC_I_DATOS_LOG = "LM_PROC_I_DATOS_LOG";
 
         public LibroMayorBO()
         {
@@ -23,7 +24,7 @@ namespace CapaNegocio
             //this._objContext.Configuration.ProxyCreationEnabled = false;
         }
 
-        public Respuesta EliminarDatos(String empresa)
+        public Respuesta EliminarDatos(String empresa, String TipoCuenta)
         {
             Respuesta respuesta = new Respuesta();
            try
@@ -38,6 +39,7 @@ namespace CapaNegocio
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@empresa", empresa);
+                    cmd.Parameters.AddWithValue("@TipoCuenta", TipoCuenta);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     if(reader.Read())
@@ -135,6 +137,61 @@ namespace CapaNegocio
 
             return respuesta;
         }
+
+        public List<Respuesta> InsertaDatosLog(string empresa, string tipoCuenta, string tipoInteraccion, string descripcion, string error_desc)
+        {
+
+            List<Respuesta> respuesta = new List<Respuesta>();
+            try
+            {
+
+                using (SqlConnection cnn = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionRepositorio"].ConnectionString))
+                {
+                    cnn.Open();
+                    //Resto del codigo
+
+                    SqlCommand cmd = new SqlCommand(LM_PROC_I_DATOS_LOG, cnn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //cmd.Parameters.AddWithValue("@empresa", empresa);
+
+                    cmd.Parameters.AddWithValue("@Empresa", empresa);
+                    cmd.Parameters.AddWithValue("@TipoCuenta", tipoCuenta);
+                    cmd.Parameters.AddWithValue("@TipoInteraccion", tipoInteraccion);
+                    cmd.Parameters.AddWithValue("@Descripcion", descripcion);
+                    cmd.Parameters.AddWithValue("@error_desc", error_desc);
+                    
+
+                    Respuesta dto = new Respuesta();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        dto.Codigo = reader["ERROR"].ToString();
+                        dto.Mensaje = reader["MENSAJE"].ToString();
+                    }
+                    respuesta.Add(dto);
+                    reader.Close();
+
+
+
+
+
+                    cnn.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Respuesta dto = new Respuesta();
+                Console.WriteLine(ex.Message);
+                dto.Mensaje = ex.Message;
+                respuesta.Add(dto);
+            }
+
+            return respuesta;
+        }
+
+
 
     }
 }
